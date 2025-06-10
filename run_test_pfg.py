@@ -7,7 +7,7 @@ from moo_algorithm.pfg_moea import run_pfgmoea
 import json
 import numpy as np
 
-def main(number = 8, type = "LC2", index = 1, seed = 0, num = 100, max_gen = 100):
+def main(number = 8, type = "LC2", index = 1, seed = 0, num = 100, max_gen = 100, gk=5):
     # 1) Prepare data and create an initial population of individuals
 
     # filepath = f'.\\data\\dpdptw\\{number}00\\{type}_{number}_{index}.csv'
@@ -26,7 +26,7 @@ def main(number = 8, type = "LC2", index = 1, seed = 0, num = 100, max_gen = 100
     # original_results["time"] = original_time
 
     start_time_proposed = time.time()
-    proposed_results = run_pfgmoea(4, graph, indi_list, num, max_gen, 5, 0.01, crossover_operator, mutation_operator, 0.9, 0.1, calculate_fitness)
+    proposed_results = run_pfgmoea(4, graph, indi_list, num, max_gen, gk, 0.01, crossover_operator, mutation_operator, 0.9, 0.1, calculate_fitness)
     proposed_time = time.time() - start_time_proposed
     proposed_results["time"] = proposed_time
 
@@ -78,13 +78,20 @@ if __name__ == "__main__":
         help="Random seed. Default: 0."
     )
 
+    parser.add_argument(
+        "--gk", 
+        type=int, 
+        default=5, 
+        help="GK. Default: 5."
+    )
+
     # Parse command-line arguments
     args = parser.parse_args()
 
     # Loop to run main with the chosen arguments
     for num in [2, 4, 8]:
         for t in args.type:
-            for i in range(1, 11):
+            for i in range(1, 4):
                 # We pass args.max_gen instead of the hard-coded 150
-                main(number=num, type=t, index=i, seed=args.seed, num=100, max_gen=args.maxgen)
+                main(number=num, type=t, index=i, seed=args.seed, num=100, max_gen=args.maxgen, gk =  args.gk)
                 print(f"Done {num}_{t}_{i}")
