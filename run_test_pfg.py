@@ -42,7 +42,7 @@ def main(number = 8, type = "LC2", index = 1, seed = 0, num = 100, max_gen = 100
         # "PFG-EMOA": pfg_results,
     }
 
-    name_store = f"Result/{type}_{number}_{index}_{seed}.json"
+    name_store = f"Result/{type}_{number}_{index}_{seed}_{gk}.json"
     with open(name_store, "w") as f:
         json.dump(final_results, f, indent=2)
 
@@ -78,12 +78,12 @@ if __name__ == "__main__":
         help="Random seed. Default: 0."
     )
 
-    parser.add_argument(
-        "--gk", 
-        type=int, 
-        default=5, 
-        help="GK. Default: 5."
-    )
+    # parser.add_argument(
+    #     "--gk", 
+    #     type=int, 
+    #     default=5, 
+    #     help="GK. Default: 5."
+    # )
 
     # Parse command-line arguments
     args = parser.parse_args()
@@ -92,6 +92,7 @@ if __name__ == "__main__":
     for num in [2, 4, 8]:
         for t in args.type:
             for i in range(1, 4):
-                # We pass args.max_gen instead of the hard-coded 150
-                main(number=num, type=t, index=i, seed=args.seed, num=100, max_gen=args.maxgen, gk =  args.gk)
-                print(f"Done {num}_{t}_{i}")
+                for gk in [3,5,8,10]:
+                    # We pass args.max_gen instead of the hard-coded 150
+                    main(number=num, type=t, index=i, seed=args.seed, num=100, max_gen=args.maxgen, gk =  args.gk)
+                    print(f"Done {num}_{t}_{i}_{gk}")

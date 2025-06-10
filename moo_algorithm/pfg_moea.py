@@ -205,7 +205,7 @@ def run_pfgmoea(processing_number, problem, indi_list, pop_size, max_gen, GK, si
         pop.indivs.extend(offspring)
         pop.natural_selection()
 
-        print("Generation {}: ".format(gen + 1), cal_hv_front(pop.ParetoFront[0], np.array([20000, 2000, 2000, 2000]))/20000/2000/2000/2000)
+        # print("Generation {}: ".format(gen + 1), cal_hv_front(pop.ParetoFront[0], np.array([20000, 2000, 2000, 2000]))/20000/2000/2000/2000)
 
         pop.ParetoFront[0] = filter_external(pop.ParetoFront[0])
 
