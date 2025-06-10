@@ -94,5 +94,5 @@ if __name__ == "__main__":
             for i in range(1, 4):
                 for gk in [3,5,8,10]:
                     # We pass args.max_gen instead of the hard-coded 150
-                    main(number=num, type=t, index=i, seed=args.seed, num=100, max_gen=args.maxgen, gk =  args.gk)
+                    main(number=num, type=t, index=i, seed=args.seed, num=100, max_gen=args.maxgen, gk =  gk)
                     print(f"Done {num}_{t}_{i}_{gk}")
