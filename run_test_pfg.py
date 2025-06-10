@@ -91,7 +91,7 @@ if __name__ == "__main__":
     # Loop to run main with the chosen arguments
     for num in [2, 4, 8]:
         for t in args.type:
-            for i in range(1, 4):
+            for i in range(1, 3):
                 for gk in [3,5,8,10]:
                     # We pass args.max_gen instead of the hard-coded 150
                     main(number=num, type=t, index=i, seed=args.seed, num=100, max_gen=args.maxgen, gk =  gk)
